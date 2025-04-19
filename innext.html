@@ -2,3 +2,42 @@
   <h2>Tool Name</h2>
   <div>...Tool UI aur code yahan...</div>
 </section>
+<section id="image-to-pdf" style="padding: 2em; background: #fff; border-radius: 10px; margin: 2em;">
+  <h2>🖼️ Image to PDF Converter</h2>
+  <p>Select images and convert them into a single PDF file.</p>
+  <input type="file" id="imgFiles" multiple accept="image/*" />
+  <br><br>
+  <button onclick="convertImagesToPDF()">Convert to PDF</button>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+  async function convertImagesToPDF() {
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF();
+    const files = document.getElementById("imgFiles").files;
+
+    if (files.length === 0) {
+      alert("Please select at least one image.");
+      return;
+    }
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const img = new Image();
+      img.src = URL.createObjectURL(file);
+      
+      await new Promise((resolve) => {
+        img.onload = function () {
+          const width = pdf.internal.pageSize.getWidth();
+          const height = (img.height * width) / img.width;
+          if (i > 0) pdf.addPage();
+          pdf.addImage(img, "JPEG", 0, 0, width, height);
+          resolve();
+        };
+      });
+    }
+
+    pdf.save("converted.pdf");
+  }
+</script>
