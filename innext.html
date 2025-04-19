@@ -1,8 +1,113 @@
-<section id="tool-name">
-  <h2>Tool Name</h2>
-  <div>...Tool UI aur code yahan...</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MTD Globle - Free Online Tools</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f2f2f2; color: #333;
+    }
+    header {
+      background-color: #1d3557;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+    nav {
+      background: #457b9d;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      background: #1d3557;
+      border-radius: 5px;
+    }
+    nav a:hover {
+      background: #a8dadc;
+      color: #1d3557;
+    }
+    section {
+      background: white;
+      padding: 2em;
+      margin: 1em;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #1d3557;
+    }
+    footer {
+      text-align: center;
+      padding: 1em;
+      background: #1d3557;
+      color: white;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      background: #1d3557;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🌐 MTD Globle</h1>
+  <p>Free Online Tools & Digital Products for Everyone</p>
+</header>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#about">About Us</a>
+  <a href="#contact">Contact Us</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#products">Products</a>
+  <a href="#buy">Buy Now</a>
+</nav>
+
+<section id="home">
+  <h2>Welcome to MTD Globle</h2>
+  <p>Your one-stop platform for free and affordable online tools and digital products.</p>
 </section>
-<section id="image-to-pdf" style="padding: 2em; background: #fff; border-radius: 10px; margin: 2em;">
+
+<section id="about">
+  <h2>About Us</h2>
+  <p>MTD Globle is committed to providing useful digital tools and products for users all over the world, absolutely free or at very low cost.</p>
+</section>
+
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p>Email: support@mtdgloble.com<br>Phone: +91-9904116532</p>
+</section>
+
+<section id="gallery">
+  <h2>Gallery</h2>
+  <p>Check back soon for images and screenshots of our tools in action.</p>
+</section>
+
+<section id="products">
+  <h2>Our Products</h2>
+  <p>Explore our collection of digital products available for free or low cost.</p>
+</section>
+
+<section id="buy">
+  <h2>Buy Now</h2>
+  <p>Visit our marketplace to instantly access our premium tools and products.</p>
+</section>
+
+<section id="image-to-pdf">
   <h2>🖼️ Image to PDF Converter</h2>
   <p>Select images and convert them into a single PDF file.</p>
   <input type="file" id="imgFiles" multiple accept="image/*" />
@@ -10,7 +115,57 @@
   <button onclick="convertImagesToPDF()">Convert to PDF</button>
 </section>
 
+<section id="pdf-to-image">
+  <h2>📄 PDF to Image Converter</h2>
+  <p>Select a PDF file to convert its pages into images (PNG).</p>
+  <input type="file" id="pdfFile" accept="application/pdf" />
+  <br><br>
+  <button onclick="convertPDFToImages()">Convert PDF</button>
+  <div id="imageOutput"></div>
+</section>
+
+<section id="calculator">
+  <h2>🧮 Scientific Calculator</h2>
+  <input type="text" id="calc-display" readonly style="width:100%;font-size:1.2em;padding:10px;margin-bottom:10px;"/>
+  <div>
+    <button onclick="addToCalc('7')">7</button>
+    <button onclick="addToCalc('8')">8</button>
+    <button onclick="addToCalc('9')">9</button>
+    <button onclick="addToCalc('/')">/</button><br>
+    <button onclick="addToCalc('4')">4</button>
+    <button onclick="addToCalc('5')">5</button>
+    <button onclick="addToCalc('6')">6</button>
+    <button onclick="addToCalc('*')">*</button><br>
+    <button onclick="addToCalc('1')">1</button>
+    <button onclick="addToCalc('2')">2</button>
+    <button onclick="addToCalc('3')">3</button>
+    <button onclick="addToCalc('-')">-</button><br>
+    <button onclick="addToCalc('0')">0</button>
+    <button onclick="addToCalc('.')">.</button>
+    <button onclick="calculateCalc()">=</button>
+    <button onclick="addToCalc('+')">+</button><br>
+    <button onclick="clearCalc()">C</button>
+  </div>
+</section>
+
+<section id="zip-creator">
+  <h2>📦 Create ZIP File</h2>
+  <p>Select files to compress them into a ZIP file.</p>
+  <input type="file" id="zipFiles" multiple />
+  <br><br>
+  <button onclick="createZipFile()">Create ZIP</button>
+</section>
+
+<footer>
+  <p>&copy; 2025 MTD Globle | Made in India 🇮🇳</p>
+</footer>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.13.216/pdf.min.js"></script>
+<script>
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.13.216/pdf.worker.min.js';
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script>
   async function convertImagesToPDF() {
     const { jsPDF } = window.jspdf;
@@ -26,7 +181,6 @@
       const file = files[i];
       const img = new Image();
       img.src = URL.createObjectURL(file);
-      
       await new Promise((resolve) => {
         img.onload = function () {
           const width = pdf.internal.pageSize.getWidth();
@@ -40,4 +194,71 @@
 
     pdf.save("converted.pdf");
   }
+
+  async function convertPDFToImages() {
+    const file = document.getElementById("pdfFile").files[0];
+    if (!file) return alert("Please select a PDF file.");
+
+    const pdfData = new Uint8Array(await file.arrayBuffer());
+    const pdf = await pdfjsLib.getDocument({ data: pdfData }).promise;
+
+    const output = document.getElementById("imageOutput");
+    output.innerHTML = "";
+
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const scale = 1.5;
+      const viewport = page.getViewport({ scale });
+      const canvas = document.createElement("canvas");
+      const context = canvas.getContext("2d");
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+
+      await page.render({ canvasContext: context, viewport }).promise;
+      const img = document.createElement("img");
+      img.src = canvas.toDataURL();
+      img.style.maxWidth = "100%";
+      img.style.margin = "1em 0";
+      output.appendChild(img);
+    }
+  }
+
+  let calcInput = "";
+  function addToCalc(val) {
+    calcInput += val;
+    document.getElementById("calc-display").value = calcInput;
+  }
+  function clearCalc() {
+    calcInput = "";
+    document.getElementById("calc-display").value = "";
+  }
+  function calculateCalc() {
+    try {
+      const result = eval(calcInput);
+      document.getElementById("calc-display").value = result;
+      calcInput = result.toString();
+    } catch {
+      alert("Invalid Expression");
+    }
+  }
+
+  async function createZipFile() {
+    const files = document.getElementById("zipFiles").files;
+    if (files.length === 0) {
+      alert("Please select files to zip.");
+      return;
+    }
+    const zip = new JSZip();
+    for (let file of files) {
+      zip.file(file.name, file);
+    }
+    const content = await zip.generateAsync({ type: "blob" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(content);
+    a.download = "compressed.zip";
+    a.click();
+  }
 </script>
+
+</body>
+</html>
